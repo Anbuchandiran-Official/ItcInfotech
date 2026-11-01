@@ -34,7 +34,7 @@ Open `http://localhost:3000`. Register an account, sign in, and enable MFA from 
 
 ## Deploy on Render
 
-The root `render.yaml` is a Render Blueprint. It describes the Node web service, a PostgreSQL database, and a private Key Value service used by shared rate limits. The Blueprint generates session and TOTP encryption secrets. During initial Blueprint setup, supply `RESEND_API_KEY` and `MAIL_FROM` if you want password reset emails; verify the sending domain with Resend first.
+The root `render.yaml` is a Render Blueprint. It describes the Node web service, a PostgreSQL database, and a private Key Value service used by shared rate limits. The Blueprint generates session and TOTP encryption secrets. After deployment, add `RESEND_API_KEY` and `MAIL_FROM` in the Render service settings if you want password reset emails; verify the sending domain with Resend first.
 
 1. Push this project to a GitHub, GitLab, or Bitbucket repository connected to Render.
 2. In Render, choose **New → Blueprint**, select the repository, and apply `render.yaml`.

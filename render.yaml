@@ -24,10 +24,6 @@ services:
         generateValue: true
       - key: TOTP_ENCRYPTION_KEY
         generateValue: true
-      - key: RESEND_API_KEY
-        sync: false
-      - key: MAIL_FROM
-        sync: false
       - key: APP_ORIGIN
         fromService:
           name: itc-secure-login
