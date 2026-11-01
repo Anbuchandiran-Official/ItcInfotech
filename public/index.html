@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10243a">
+  <title>Secure Login Lab · ITC Infotech</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="/" aria-label="Secure Login Lab home"><span class="brand-mark">S</span><span>SECURE LOGIN <b>LAB</b></span></a><span class="top-label">AUTHENTICATION · SECURITY ENGINEERING</span></header>
+  <main class="shell">
+    <section class="intro">
+      <div class="eyebrow"><span class="pulse"></span> INTERACTIVE SECURITY DEMO</div>
+      <h1>Trust starts<br>at the <em>login.</em></h1>
+      <p>A production-minded login and recovery flow. Passwords are hashed with Argon2id, sessions stay server-side, and abuse is throttled.</p>
+      <div class="feature-list"><div><span>01</span><p><b>Protected credentials</b><small>Argon2id · per-user salt</small></p></div><div><span>02</span><p><b>Hardened sessions</b><small>HttpOnly · Secure · SameSite</small></p></div><div><span>03</span><p><b>Layered access</b><small>Redis limits · optional TOTP MFA</small></p></div></div>
+      <div class="architecture"><div class="arch-label">AUTH REQUEST PATH</div><div class="arch-flow"><span>Browser</span><i>→</i><span>HTTPS API</span><i>→</i><span>Argon2id</span><i>→</i><span>PostgreSQL</span></div></div>
+    </section>
+    <section class="panel-wrap">
+      <div class="panel" id="auth-panel">
+        <div class="panel-head"><div><div class="eyebrow">ACCOUNT ACCESS</div><h2 id="panel-title">Welcome back</h2></div><span class="secure-badge"><span></span> ENCRYPTED</span></div>
+        <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+        <div id="auth-forms">
+          <div class="tabs" role="tablist"><button class="tab active" data-mode="login" role="tab" aria-selected="true">Sign in</button><button class="tab" data-mode="register" role="tab" aria-selected="false">Create account</button></div>
+          <form id="auth-form">
+            <label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" maxlength="254" required>
+            <div class="label-row"><label for="password">Password</label><button class="text-button" id="forgot-link" type="button">Forgot password?</button></div>
+            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="At least 12 characters" minlength="12" maxlength="256" required>
+            <p class="hint" id="password-hint">Use a unique password you have not used elsewhere.</p>
+            <button class="primary" type="submit"><span id="submit-label">Continue securely</span><span aria-hidden="true">↗</span></button>
+          </form>
+          <form id="mfa-form" hidden><label for="mfa-code">Authenticator code</label><input id="mfa-code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" placeholder="000 000" required><p class="hint">Enter the current six-digit code from your authenticator app.</p><button class="primary" type="submit"><span>Verify and sign in</span><span aria-hidden="true">↗</span></button></form>
+          <form id="forgot-form" hidden><label for="forgot-email">Account email</label><input id="forgot-email" type="email" autocomplete="email" required placeholder="you@example.com"><p class="hint">If an account matches, we’ll send a one-time reset link that expires in 15 minutes.</p><button class="primary" type="submit"><span>Send reset link</span><span aria-hidden="true">↗</span></button><button class="back-link" type="button" data-back>← Back to sign in</button></form>
+          <form id="reset-form" hidden><label for="new-password">New password</label><input id="new-password" type="password" autocomplete="new-password" minlength="12" maxlength="256" required placeholder="At least 12 characters"><p class="hint">Use at least 12 characters, including uppercase, lowercase and a number.</p><button class="primary" type="submit"><span>Change password</span><span aria-hidden="true">↗</span></button></form>
+        </div>
+        <section id="dashboard" hidden><div class="welcome-card"><div class="avatar" id="avatar">A</div><div><span class="eyebrow">AUTHENTICATED SESSION</span><h3 id="user-email"></h3></div></div><div class="status-grid"><div><span>SESSION</span><b>Server-side</b></div><div><span>SECOND FACTOR</span><b id="mfa-status">Not enabled</b></div><div><span>PASSWORD</span><b>Argon2id</b></div></div><div id="mfa-settings"><button id="mfa-setup" class="secondary" type="button">Set up authenticator MFA</button><div id="mfa-enrollment" hidden><p>In your authenticator app, add this setup key:</p><code id="mfa-secret"></code><p class="hint">Or enter the setup URI manually: <span id="mfa-uri"></span></p><label for="enroll-code">Verify a code to enable MFA</label><input id="enroll-code" inputmode="numeric" maxlength="6" placeholder="000 000"><button id="mfa-enable" class="primary compact" type="button">Enable MFA</button></div><div id="mfa-disable-row" hidden><label for="disable-code">Enter a current code to disable MFA</label><input id="disable-code" inputmode="numeric" maxlength="6" placeholder="000 000"><button id="mfa-disable" class="secondary" type="button">Disable MFA</button></div></div><button id="logout" class="logout" type="button">Sign out</button></section>
+        <div class="panel-foot"><span class="lock">▣</span> Your credentials never leave the secure connection.</div>
+      </div>
+      <div class="compliance"><span>BUILT AROUND</span><b>OWASP ASVS</b><i>·</i><b>OWASP TOP 10</b></div>
+    </section>
+  </main>
+  <footer><span>ITC INFOTECH · EMINENCE CAMPUS DRIVE</span><span>SECURE BY DESIGN <i>●</i></span></footer>
+</body>
+</html>

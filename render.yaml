@@ -1,0 +1,50 @@
+services:
+  - type: web
+    name: itc-secure-login
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: itc-secure-login-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: itc-secure-login-cache
+          type: keyvalue
+          property: connectionString
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: TOTP_ENCRYPTION_KEY
+        generateValue: true
+      - key: RESEND_API_KEY
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      - key: APP_ORIGIN
+        fromService:
+          name: itc-secure-login
+          type: web
+          envVarKey: RENDER_EXTERNAL_URL
+
+  - type: keyvalue
+    name: itc-secure-login-cache
+    plan: free
+    region: singapore
+    maxmemoryPolicy: noeviction
+    ipAllowList: []
+
+databases:
+  - name: itc-secure-login-db
+    plan: free
+    region: singapore
+    databaseName: itc_secure_login
+    user: itc_secure_login
+    postgresMajorVersion: "16"

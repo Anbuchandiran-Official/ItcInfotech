@@ -1,0 +1,27 @@
+{
+  "name": "itc-infotech-securing-login-page",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Secure login demonstration app and interview presentation",
+  "scripts": {
+    "build": "node generate_presentation.js",
+    "validate": "node validate_presentation.js",
+    "start": "node -r dotenv/config app.js",
+    "start:presentation": "node generate_presentation.js && node validate_presentation.js"
+  },
+  "dependencies": {
+    "argon2": "^0.41.1",
+    "connect-pg-simple": "^10.0.0",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "express-session": "^1.18.2",
+    "helmet": "^8.1.0",
+    "ioredis": "^5.6.1",
+    "pg": "^8.16.3",
+    "rate-limit-redis": "^4.2.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
