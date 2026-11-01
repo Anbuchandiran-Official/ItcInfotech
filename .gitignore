@@ -4,3 +4,6 @@ node_modules/
 !.env.example
 *.log
 cloudshare-568ae-firebase-adminsdk-fbsvc-a1057d11ee.json
+firebase-service-account.json
+*firebase-adminsdk*.json
+*.service-account.json
